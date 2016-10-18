@@ -1,0 +1,47 @@
+{
+  "name": "BetterRT",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "A collection of small quality of life imporovements for Roosterteeth.com",
+  "homepage_url": "http://minnesofa.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",  
+  "page_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "page action demo",
+    "default_popup": "src/page_action/page_action.html"
+  },
+  "permissions": [
+    "http://*.roosterteeth.com/*",
+    "http://roosterteeth.com/*"
+  ],
+  "web_accessible_resources": [
+    "src/inject/embed.js"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*.roosterteeth.com/*",
+        "http://roosterteeth.com/*"
+      ],
+      "css": [
+        "src/inject/inject.css"
+      ]
+    },
+    {
+      "matches": [
+        "http://*.roosterteeth.com/*",
+        "http://roosterteeth.com/*"
+      ],
+      "js": [
+        "js/jquery/jquery.min.js",
+        "js/video.js",
+        "src/inject/inject.js"
+      ]
+    }
+  ]
+}
