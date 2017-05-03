@@ -9,18 +9,12 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "default_locale": "en",  
-  "page_action": {
-    "default_icon": "icons/icon19.png",
-    "default_title": "page action demo",
-    "default_popup": "src/page_action/page_action.html"
-  },
   "permissions": [
     "http://*.roosterteeth.com/*",
     "http://roosterteeth.com/*"
   ],
   "web_accessible_resources": [
-    "src/inject/embed.js"
+    "bundle.js"
   ],
   "content_scripts": [
     {
@@ -29,7 +23,7 @@
         "http://roosterteeth.com/*"
       ],
       "css": [
-        "src/inject/inject.css"
+        "inject.css"
       ]
     },
     {
@@ -38,9 +32,7 @@
         "http://roosterteeth.com/*"
       ],
       "js": [
-        "js/jquery/jquery.min.js",
-        "js/video.js",
-        "src/inject/inject.js"
+        "inject.js"
       ]
     }
   ]

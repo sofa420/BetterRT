@@ -1,0 +1,34 @@
+/**
+ * Place your custom CSS styles here.
+ **/
+
+.fullwindow-video {
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 9999 !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+#refreshVideos {
+  line-height: 36px;
+  cursor: pointer;
+}
+
+#refreshVideos .fa-refresh {
+  font-size: 24px;
+  margin-left: -20px;
+}
+
+#channelFilter {
+    margin-right: -275px;
+}
+
+.no-overflow {
+  overflow: hidden;
+}
+
+#refresh-comments {
+  cursor: pointer;
+}

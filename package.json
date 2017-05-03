@@ -1,0 +1,29 @@
+{
+  "name": "better-rt",
+  "version": "1.0.0",
+  "description": "A collection of quality of life additions to the Rooster Teeth site.",
+  "main": "build.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sofa420/BetterRT.git"
+  },
+  "keywords": [
+    "rooster",
+    "teeth",
+    "chrome",
+    "extension"
+  ],
+  "author": "sofa <sofa@minnesofa.co>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sofa420/BetterRT/issues"
+  },
+  "homepage": "https://github.com/sofa420/BetterRT#readme",
+  "dependencies": {
+    "browserify": "^14.3.0",
+    "page": "^1.7.1"
+  }
+}
