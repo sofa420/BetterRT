@@ -3,13 +3,24 @@ var createButton = require('../libs/util').createButton;
 var generateChannelString = require('../libs/util').generateChannelString;
 var loadingImg = require('../libs/util').loadingImg;
 var querystring = require('querystring');
+var updateRecentlyAdded = require('../libs/util').updateRecentlyAdded
 
 
 module.exports = function() {
   page('/episode/recently-added', function(ctx){
     $('.content-title.recently-added-header').append("<a id='refreshVideos'><i class='fa fa-refresh'></i></a>")
+    $('.content-title.recently-added-header').after("<div><input type='checkbox' id='firstOnlyToggle'> Only show First Content</div>");
     $('#refreshVideos').click(function(){
       $('#channelFilter').change();
+    });
+    $('.col-lg-8').append('<div id="recently-added-grid-shadow"></div>')
+    $("#firstOnlyToggle").change(function(){
+      if($(this).is(':checked')){
+        buildShadowElement();
+        hideNonFirst();
+      } else {
+        $('#recently-added-grid .grid-blocks').html($('#recently-added-grid-shadow').html());
+      }
     })
 
     $('#channelFilter').on('change', onChannelChange);
@@ -38,6 +49,18 @@ module.exports = function() {
 
     betterPagination();
   })
+
+function hideNonFirst(){
+  $('.grid-blocks li').each(function(){
+    if(!$(this).find('.ion-star').length){
+      $(this).remove();
+    }
+  })
+}
+
+function buildShadowElement(){
+  $('#recently-added-grid-shadow').html($('#recently-added-grid .grid-blocks').html())
+}
 /*
   page('/episode/recently-added/:page', function(ctx){
     $.get('http://roosterteeth.com/episode/recently-added', function(body){
@@ -59,7 +82,6 @@ function betterPagination(){
 
   window.addEventListener('popstate', function(e){
     var page = e.state.page || null;
-    console.log(e)
     if(page === null){
 
     } else {
@@ -107,5 +129,16 @@ function paginatorOnClick(e){
       page: page,
       channelString: channelString
     }, null, url)
-    updateRecentlyAdded(channelString);
+    updateRecentlyAdded(channelString, function(){
+      if($('#firstOnlyToggle').is(':checked')){
+        $('#recently-added-grid-shadow').html($('#recently-added-grid .grid-blocks').html())
+        $('.grid-blocks li').each(function(){
+          if(!$(this).find('.ion-star').length){
+            $(this).remove();
+          }
+        })
+      }
+    });
+
+
 }

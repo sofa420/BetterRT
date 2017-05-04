@@ -11,7 +11,7 @@ exports.loadingImg = loadingImg;
 function generateChannelString(page){
   var channel = $('#channelFilter').val();
   var channelString = '?';
-  if (channel.length !== 0) {
+  if (channel && channel.length !== 0) {
     channelString = '?channel=' + channel + '&';
   }
   channelString = channelString + 'page=' + page +'&';
@@ -40,3 +40,18 @@ function createButton(id, iconClass, title){
 };
 
 exports.createButton = createButton;
+
+/*****************************/
+/*    updateRecentlyAdded    */
+/*****************************/
+function updateRecentlyAdded(query, next) {
+  $.get('/api/internal/episodes/recent' + query + 'limit=24', function(data) {
+    RT.episodeGrid(data.data, 'recently-added-grid');
+
+    // create pagination
+    $.each(data.links, function(key, value) { data.links[key] = getParameterByName('page', value) });
+    RT.paginator(data.links, 'paginator', onSubmitHandler);
+    next()
+  })
+}
+exports.updateRecentlyAdded = updateRecentlyAdded
